@@ -1,0 +1,174 @@
+/* ═══════════════════════════════════════════════════════════════
+   Button Component Styles — Reusable button component
+   ═══════════════════════════════════════════════════════════════ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.01em;
+  transition: background 0.18s ease, color 0.18s ease, transform 0.1s ease;
+  cursor: pointer;
+  border: none;
+  border-radius: 9px;
+}
+
+.button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Size Variants
+   ═══════════════════════════════════════════════════════════════ */
+
+.sizeSm {
+  padding: 8px 18px;
+  font-size: 13px;
+  border-radius: 7px;
+}
+
+.sizeMd {
+  padding: 11px 26px;
+  font-size: 15px;
+  border-radius: 9px;
+}
+
+.sizeLg {
+  padding: 15px 36px;
+  font-size: 17px;
+  border-radius: 10px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Color Variants
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Primary Variant */
+.primary {
+  background: var(--color-primary);
+  color: var(--color-bg-white);
+  border: 2px solid var(--color-primary);
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  border-color: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.primary:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Outline Variant */
+.outline {
+  background: transparent;
+  color: var(--color-text-default);
+  border: 2px solid var(--color-text-default);
+}
+
+.outline:hover:not(:disabled) {
+  background: #f1f5f9;
+  transform: translateY(-1px);
+}
+
+.outline:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Ghost Variant */
+.ghost {
+  background: transparent;
+  color: var(--color-text-muted);
+  border: 2px solid transparent;
+}
+
+.ghost:hover:not(:disabled) {
+  background: #f8fafc;
+  transform: translateY(-1px);
+}
+
+.ghost:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Full Width
+   ═══════════════════════════════════════════════════════════════ */
+
+.fullWidth {
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Responsive Design
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .sizeLg {
+    padding: 12px 28px;
+    font-size: 15px;
+  }
+
+  .sizeMd {
+    padding: 9px 22px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sizeLg {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .sizeMd {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .sizeSm {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Responsive Design
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .sizeLg {
+    padding: 12px 28px;
+    font-size: 15px;
+  }
+
+  .sizeMd {
+    padding: 9px 22px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sizeLg {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .sizeMd {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .sizeSm {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+}
