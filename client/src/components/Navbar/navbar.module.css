@@ -1,0 +1,99 @@
+/* ═══════════════════════════════════════════════════════════════
+   Navbar Styles — Navigation bar with logo and action buttons
+   ═══════════════════════════════════════════════════════════════ */
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 48px;
+  background-color: var(--color-bg-white);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: 0 1px 3px var(--color-shadow);
+  position: relative;
+  z-index: 100;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.brandText {
+  font-size: 20px;
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-default);
+  letter-spacing: -0.3px;
+}
+
+.navActions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.loginLink {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  color: #334155;
+  font-weight: var(--font-weight-medium);
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: var(--transition-fast);
+  font-family: inherit;
+}
+
+.loginLink:hover {
+  background-color: #f1f5f9;
+  color: var(--color-text-default);
+}
+  
+
+.loginLink:active {
+  transform: scale(0.98);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Responsive Design
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .navbar {
+    padding: 14px 24px;
+    gap: 20px;
+  }
+
+  .brandText {
+    font-size: 18px;
+  }
+
+  .navActions {
+    gap: 12px;
+  }
+
+  .loginLink {
+    font-size: 14px;
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+  }
+
+  .brandText {
+    font-size: 16px;
+  }
+
+  .navActions {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+}
+

@@ -1,0 +1,91 @@
+/* ═══════════════════════════════════════════════════════════════
+   Global Styles — Reset, Typography, Color Palette
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Color Palette ─────────────────────────────────────────── */
+  --color-primary: #0ea5e9;      /* Sky blue */
+  --color-primary-dark: #0284c7; /* Sky darker */
+  --color-text-dark: #0f172a;    /* Very dark navy */
+  --color-text-default: #1e293b; /* Dark slate */
+  --color-text-muted: #64748b;   /* Muted gray */
+  --color-bg-light: #eef2f7;     /* Light blue-gray */
+  --color-bg-white: #ffffff;     /* White */
+  --color-border: #e2e8f0;       /* Light border gray */
+  --color-shadow: rgba(15, 23, 42, 0.08);
+
+  /* ── Typography ────────────────────────────────────────────── */
+  --font-family: 'Segoe UI', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+
+  /* ── Transitions ───────────────────────────────────────────– */
+  --transition-fast: background 0.18s ease, color 0.18s ease;
+  --transition-normal: all 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CSS Reset
+   ═══════════════════════════════════════════════════════════════ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════
+   Links & Typography
+   ═══════════════════════════════════════════════════════════════ */
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-primary-dark);
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+input, textarea, select {
+  font-family: inherit;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   Media Query Breakpoints
+   ═══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  :root {
+    --spacing-xl: 24px;
+  }
+  
+  body {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --spacing-xl: 18px;
+  }
+  
+  body {
+    font-size: 14px;
+  }
+}
