@@ -6,7 +6,7 @@ import { useSignupMutation } from "../redux/api/authApiSlice";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const [form, setForm] = useState({ fullName: "", email: "", password: "" });
+  const [form, setForm] = useState({ username: "", email: "", password: "" });
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -21,7 +21,7 @@ const SignUp = () => {
     e.preventDefault();
     setError("");
 
-    if (!form.fullName.trim() || !form.email.trim() || !form.password.trim()) {
+    if (!form.username.trim() || !form.email.trim() || !form.password.trim()) {
       setError("Please fill in all fields.");
       return;
     }
@@ -36,20 +36,11 @@ const SignUp = () => {
       return;
     }
    try {
-    const res = await signup(form).unwrap(); // 🔥 important
-
-    alert(`Account created for ${res.fullName || form.fullName}!`);
+    await signup(form).unwrap();
     navigate("/login");
   } catch (err) {
     setError(err?.data?.message || "Signup failed");
   }
-    setIsSubmitting(true);
-
-    setTimeout(() => {
-      setIsSubmitting(false);
-      alert(`Account created for ${form.fullName}!`);
-      navigate("/login");
-    }, 600);
   };
 
   return (
@@ -62,15 +53,15 @@ const SignUp = () => {
         </div>
 
         <form className={styles.form} onSubmit={handleSubmit}>
-          <label htmlFor="fullName">Full Name</label>
+          <label htmlFor="username">Username</label>
           <input
-            id="fullName"
-            name="fullName"
+            id="username"
+            name="username"
             type="text"
-            value={form.fullName}
+            value={form.username}
             onChange={handleChange}
-            placeholder="John Doe"
-            autoComplete="name"
+            placeholder="john_doe"
+            autoComplete="username"
             required
           />
 
