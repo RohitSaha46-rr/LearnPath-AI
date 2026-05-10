@@ -19,11 +19,7 @@ const Dashboard = () => {
 
   const user = useSelector((state) => state.auth.user);
   const username =
-    user?.username ||
-    user?.fullName ||
-    user?.name ||
-    (user?.email ? user.email.split("@")[0] : null) ||
-    "there";
+    user?.username
 
   const handleLogout = () => {
     localStorage.removeItem("token");

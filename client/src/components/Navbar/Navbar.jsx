@@ -5,11 +5,7 @@ import { Link } from "react-router-dom";
 const Navbar = ({ onLogin, onGetStarted, onLogout }) => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
   const username =
-    user?.username ||
-    user?.fullName ||
-    user?.name ||
-    (user?.email ? user.email.split("@")[0] : null) ||
-    "User";
+    user?.username 
   const showLogout = isAuthenticated;
 
   return (

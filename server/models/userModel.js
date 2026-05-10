@@ -10,7 +10,7 @@ const progressSchema = new mongoose.Schema({
 const userSchema = new mongoose.Schema({
   username: String,
   email: String,
-  password: String,
+  password: { type: String, default: null },
 
   progress: [progressSchema]
 });

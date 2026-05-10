@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useGenerateRoadmapMutation } from "../redux/api/authApiSlice";
 import { logout } from "../redux/features/auth/authSlice";
@@ -9,9 +9,16 @@ const RoadmapPage = () => {
   const dispatch = useDispatch();
   const [roadmap, setRoadmap] = useState(null);
   const [generateRoadmap, { isLoading, error }] = useGenerateRoadmapMutation();
+  // const[createOrderPayment]= useCreateOrderPaymentMutation()
   const location = useLocation();
   const navigate = useNavigate();
-
+const {  user } = useSelector((state) => state.auth);
+  const username =
+    user?.username 
+    const email=
+    user?.email;
+    const userID=
+    user?._id
   const topic = location.state?.topic;
   const level = location.state?.level || "beginner";
 
@@ -41,6 +48,32 @@ const RoadmapPage = () => {
     dispatch(logout());
     navigate("/");
   };
+
+  const renderMfe= ()=>{
+    
+// try {
+//       const res = await createOrderPayment({
+//           plan: "PRO",
+//           amount: 499,
+//           userId: "user123",
+//           email: "test@gmail.com",
+
+//       })
+       
+      
+     
+
+//       const { orderId } = res.data;
+
+    // navigate(`/payment?userId=${userID}`,{
+    //   state: { email, username }
+    // })
+
+    navigate(`/payment`,{
+      state: { email, username }
+    })
+    
+  }
 
   return (
     <>
@@ -135,10 +168,26 @@ const RoadmapPage = () => {
                 border: "none", borderRadius: 10,
                 fontWeight: 600, fontSize: "1rem",
                 cursor: "pointer", display: "flex",
-                alignItems: "center", justifyContent: "center", gap: "0.5rem"
+                alignItems: "center", justifyContent: "center", gap: "0.5rem",
+                marginBottom: "0.75rem"
               }}
             >
               Start Learning {topic} &nbsp;›
+            </button>
+
+            {/* Upgrade to Premium */}
+            <button
+              style={{
+                width: "100%", padding: "1rem",
+                background: "#fff", color: "#374151",
+                border: "1px solid #e5e7eb", borderRadius: 10,
+                fontWeight: 600, fontSize: "1rem",
+                cursor: "pointer", display: "flex",
+                alignItems: "center", justifyContent: "center", gap: "0.5rem"
+              }}
+              onClick={renderMfe}
+            >
+              👑 Upgrade to Premium
             </button>
           </>
         )}

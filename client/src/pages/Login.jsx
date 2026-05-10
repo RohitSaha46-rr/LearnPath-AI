@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./login.module.css";
-import { useLoginMutation } from "../redux/api/authApiSlice";
+import { useGoogleloginMutation, useLoginMutation } from "../redux/api/authApiSlice";
 import { setCredentials } from "../redux/features/auth/authSlice";
+import { GoogleLogin } from "@react-oauth/google";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const Login = () => {
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const [login, { isLoading }] = useLoginMutation();
+  const [googlelogin] = useGoogleloginMutation();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +30,18 @@ const Login = () => {
       navigate("/dashboard");
     } catch (err) {
       setError(err?.data?.message || "Login failed");
+    }
+  };
+
+  const handleGoogleSuccess = async (credentialResponse) => {
+    try {
+      const res = await googlelogin({ credential: credentialResponse.credential }).unwrap();
+      localStorage.setItem("token", res.token);
+      localStorage.setItem("user", JSON.stringify(res.user));
+      dispatch(setCredentials({ user: res.user, token: res.token }));
+      navigate("/dashboard");
+    } catch (err) {
+      setError(err?.data?.message || "Google login failed");
     }
   };
 
@@ -70,6 +84,22 @@ const Login = () => {
           <button type="submit" disabled={isLoading} className={styles.submitBtn}>
             {isLoading ? "Signing In…" : "Sign In"}
           </button>
+
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", margin: "4px 0" }}>
+            <hr style={{ flex: 1, borderColor: "#e1e8f5" }} />
+            <span style={{ color: "#6f7f99", fontSize: "13px" }}>or</span>
+            <hr style={{ flex: 1, borderColor: "#e1e8f5" }} />
+          </div>
+
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <GoogleLogin
+              onSuccess={handleGoogleSuccess}
+              onError={() => setError("Google login failed")}
+              width="356"
+              text="signin_with"
+              shape="rectangular"
+            />
+          </div>
 
           <p className={styles.switchText}>
             Don't have an account? <Link to="/signup">Sign up</Link>

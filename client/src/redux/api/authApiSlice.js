@@ -34,7 +34,21 @@ export const authApi = createApi({
         body: data,
       }),
     }),
+    googlelogin: builder.mutation({
+      query:(data)=>({
+        url:"/auth/google",
+        method:"POST",
+        body:data,
+      })
+    }),
+    // createOrderPayment:builder.mutation({
+    //   query:(data)=>({
+    //     url:'create-order',
+    //     method:"POST",
+    //     body:data,
+    //   })
+    //})
   }),
 });
 
-export const { useSignupMutation, useLoginMutation, useGenerateRoadmapMutation } = authApi;
+export const { useSignupMutation, useLoginMutation, useGenerateRoadmapMutation, useGoogleloginMutation} = authApi;
