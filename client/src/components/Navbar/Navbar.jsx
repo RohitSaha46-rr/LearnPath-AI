@@ -1,11 +1,13 @@
+import { useSelector } from "react-redux";
 import Button from "../Button/Button";
 import styles from "./navbar.module.css";
+import { Link } from "react-router-dom";
+const Navbar = ({ onLogin, onGetStarted, onLogout }) => {
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const username =
+    user?.username 
+  const showLogout = isAuthenticated;
 
-
-
-const Navbar = ({ onLogin, onGetStarted }) => {
- 
- 
   return (
     <nav className={styles.navbar}>
       {/* Logo */}
@@ -18,17 +20,28 @@ const Navbar = ({ onLogin, onGetStarted }) => {
           />
           <circle cx="16" cy="8" r="2.5" fill="#0ea5e9" opacity="0.7" />
         </svg>
-        <span className={styles.brandText}>LearnAI</span>
+        <Link to="/"><span className={styles.brandText}>LearnAI</span></Link>
       </div>
 
       {/* Nav buttons */}
       <div className={styles.navActions}>
-        <button className={styles.loginLink} onClick={onLogin}>
-          Login
-        </button>
-        <Button size="md" variant="primary" onClick={onGetStarted}>
-          Get Started
-        </Button>
+        {showLogout ? (
+          <>
+            <span className={styles.userName}>Hi, {username}</span>
+            <button className={styles.loginLink} onClick={onLogout}>
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <button className={styles.loginLink} onClick={onLogin}>
+              Login
+            </button>
+            <Button size="md" variant="primary" onClick={onGetStarted}>
+              Get Started
+            </Button>
+          </>
+        )}
       </div>
     </nav>
   );

@@ -3,12 +3,13 @@ import User from "../models/userModel.js";
 
 export const generateRoadmap = async (req, res) => {
   try {
-    const { topic } = req.body;
+    const { topic, level = "beginner" } = req.body;
+    console.log("📤 Sending to FastAPI:", { topic, level });
 
     // 🔹 Call FastAPI
     const response = await axios.post(
       `${process.env.FASTAPI_URL}/api/roadmap/generate`,
-      { topic }
+      { topic, level }
     );
 
     const roadmap = response.data.roadmap;
