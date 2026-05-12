@@ -1,0 +1,148 @@
+:root {
+  --color-bg: #f4f8ff;
+  --color-card: #ffffff;
+  --color-border: #e1e8f5;
+  --color-text: #0f1f3c;
+  --color-muted: #6f7f99;
+  --color-primary: #0ea5e9;
+  --color-primary-dark: #0a8cd6;
+  --shadow: 0 18px 40px rgba(13, 50, 96, 0.16);
+}
+
+.page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at top, #eaf5ff 0%, var(--color-bg) 55%);
+  padding: 28px 12px;
+  font-family: "Segoe UI", "Inter", sans-serif;
+}
+
+.card {
+  width: min(100%, 420px);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 32px;
+}
+
+.brand {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.brandIcon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.brand h1 {
+  margin: 0 0 8px;
+  font-size: 30px;
+  color: var(--color-text);
+}
+
+.brand p {
+  margin: 0;
+  font-size: 15px;
+  color: var(--color-muted);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.form label {
+  font-size: 14px;
+  color: var(--color-text);
+  margin-bottom: 4px;
+}
+
+.form input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid #d8e3f4;
+  background: #fbfdff;
+  color: var(--color-text);
+  font-size: 15px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.17);
+}
+
+.error {
+  color: #c74747;
+  background: #fff2f2;
+  border: 1px solid #f0c8c8;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 13px;
+}
+
+.submitBtn {
+  margin-top: 4px;
+  padding: 12px 18px;
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+  background: #8ecdf6;
+  cursor: not-allowed;
+}
+
+.switchText {
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: var(--color-muted);
+  text-align: center;
+}
+
+.switchText a {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.switchText a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 24px 20px;
+  }
+
+  .brand h1 {
+    font-size: 26px;
+  }
+
+  .form input {
+    font-size: 14px;
+  }
+
+  .submitBtn {
+    font-size: 15px;
+  }
+}

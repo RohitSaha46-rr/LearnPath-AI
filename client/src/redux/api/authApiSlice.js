@@ -5,6 +5,11 @@ export const authApi = createApi({
 
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5001/api",
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem("token");
+      if (token) headers.set("authorization", `Bearer ${token}`);
+      return headers;
+    },
   }),
 
   endpoints: (builder) => ({
@@ -15,7 +20,35 @@ export const authApi = createApi({
         body: data,
       }),
     }),
+    login: builder.mutation({
+        query:(data)=>({
+            url:'/auth/login',
+            method:"POST",
+            body:data,
+        })
+    }),
+    generateRoadmap: builder.mutation({
+      query: (data) => ({
+        url: "/roadmaps",
+        method: "POST",
+        body: data,
+      }),
+    }),
+    googlelogin: builder.mutation({
+      query:(data)=>({
+        url:"/auth/google",
+        method:"POST",
+        body:data,
+      })
+    }),
+    // createOrderPayment:builder.mutation({
+    //   query:(data)=>({
+    //     url:'create-order',
+    //     method:"POST",
+    //     body:data,
+    //   })
+    //})
   }),
 });
 
-export const { useSignupMutation } = authApi;
+export const { useSignupMutation, useLoginMutation, useGenerateRoadmapMutation, useGoogleloginMutation} = authApi;

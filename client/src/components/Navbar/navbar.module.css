@@ -50,7 +50,12 @@
   background-color: #f1f5f9;
   color: var(--color-text-default);
 }
-  
+
+.userName {
+  font-size: 15px;
+  color: #334155;
+  font-weight: var(--font-weight-medium);
+}
 
 .loginLink:active {
   transform: scale(0.98);

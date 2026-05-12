@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../components/Navbar/Navbar";
 import Button from "../components/Button/Button";
 import Cards from "../components/Cards/Cards";
 import AdBox from "../components/AdBox/AdBox";
 import styles from "./home.module.css";
 import { useNavigate } from "react-router-dom";
+import { logout } from "../redux/features/auth/authSlice";
 
 const HERO_CARDS = [
   {
@@ -31,20 +32,40 @@ const HERO_CARDS = [
 ];
 
 const Home = () => {
-
+ 
   const navigate= useNavigate()
+  const dispatch = useDispatch();
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  const username =
+    user?.username ||
+    user?.fullName ||
+    user?.name ||
+    (user?.email ? user.email.split("@")[0] : null) ||
+    "there";
+
   const onLoginIn=()=>{
-navigate("/login")
+    navigate("/login")
   }
+  const onLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    dispatch(logout());
+    navigate("/");
+  };
   const onSignUp=()=>{
     navigate("/signup")
   }
+  const onGoDashboard = () => {
+    navigate("/dashboard");
+  };
+
   return (
     <div className={styles.page}>
       {/* Navbar */}
       <Navbar
         onLogin={onLoginIn}
         onGetStarted={onSignUp}
+        onLogout={onLogout}
       />
 
       {/* Hero Section */}
@@ -65,12 +86,23 @@ navigate("/login")
 
         {/* CTA Buttons */}
         <div className={styles.ctaGroup}>
-          <Button size="lg" variant="primary" onClick={onSignUp}>
-            Start Learning Free
-          </Button>
-          <Button size="lg" variant="outline" onClick={onLoginIn}>
-            Sign In
-          </Button>
+          {isAuthenticated ? (
+            <>
+             
+              <Button size="lg" variant="primary" onClick={onGoDashboard}>
+                Go to Dashboard
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button size="lg" variant="primary" onClick={onSignUp}>
+                Start Learning Free
+              </Button>
+              <Button size="lg" variant="outline" onClick={onLoginIn}>
+                Sign In
+              </Button>
+            </>
+          )}
         </div>
       </main>
 
